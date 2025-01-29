@@ -1,0 +1,17 @@
+custom.udm.Person, demo
+partyId, firstName, lastName, birthDate
+"PER1001","Aman","Ashok","1990-02-16"
+"PER1002","Baman","Bhole","2002-02-02"
+"PER1003","Chaman",Shekhar","1990-12-17"
+"PER1004","Daman","Soni","1999-02-15"
+"PER1005","Emran","Khan","1978-11-16"
+"PER1006","Faran","Sheik","2004-02-16"
+"PER1007","Imran","Pathan","2000-05-20"
+"PER1008","Gagan","Sharma","2005-02-18"
+"PER1009","Harman","Philips","2006-08-20"
+"PER1010","Jamuna","Yadav","2012-10-30"
+"PER1011","Karan","Mehra","2004-05-04"
+"PER1012","Lokesh","Patidar","2004-02-15"
+"PER1013","Mohan","Sharma","2004-08-09"
+"PER1014","Naman","Gupta","2010-07-19"
+"PER1015","Osho","Joshi","2004-01-12"

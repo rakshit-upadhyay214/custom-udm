@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-3.xsd">
+
+    <entity entity-name="Party" package="custom.udm" >
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="partyTypeEnumId" type="id" />
+        <relationship type="one" title="PartyType" related="Enumeration" short-alias="type">
+            <key-map field-name="partyTypeEnumId"/>
+        </relationship>
+        <relationship type="one-nofk" title="PtyPerson" related="Person" short-alias="person"/>
+        <relationship type="one-nofk" title="PtyGroup" related="PartyGroup" short-alias="partygroup"/>
+        <relationship type="many" title="PtyRole" related="PartyRole" short-alias="roles"/>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Party Type" enumTypeId="PartyType"/>
+            <moqui.basic.Enumeration description="Person" enumId="PERSON" enumTypeId="PartyType"/>
+            <moqui.basic.Enumeration description="PartyGroup" enumId="PARTYGROUP" enumTypeId="PartyType"/>
+        </seed-data>
+        <master name="Party">
+            <detail relationship="person" use-master="Party"/>
+            <detail relationship="partygroup" use-master="Party"/>
+            <detail relationship="type" use-master="Party"/>
+            <detail relationship="roles" use-master="Party"/>
+        </master>
+    </entity>
+
+    <entity entity-name="Person" package="custom.udm">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="firstName" type="text-medium"/>
+        <field name="lastName" type="text-medium"/>
+        <field name="birthDate" type="date"/>
+        <relationship type="one" related="Party"/>
+    </entity>
+
+    <entity entity-name="PartyGroup" package="custom.udm">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="partyGroupName" type="text-medium"/>
+        <relationship type="one" related="Party"/>
+    </entity>
+
+    <entity entity-name="RolesType" package="custom.udm">
+        <field name="roleTypeId" type="id" is-pk="true"/>
+        <field name="description" type="text-medium"/>
+        <seed-data>
+            <custom.udm.RolesType description="Employee" roleTypeId="EMPLOYEE"/>
+            <custom.udm.RolesType description="Customer" roleTypeId="CUSTOMER"/>
+            <custom.udm.RolesType description="Employer" roleTypeId="EMPLOYER"/>
+        </seed-data>
+    </entity>
+
+    <entity entity-name="PartyRole" package="custom.udm">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="roleTypeId" type="id" is-pk="true"/>
+        <relationship type="one" related="Party"/>
+        <relationship type="one" related="RolesType"/>
+<!--        <index name="IDXPtyRoleRoleType">-->
+<!--            <index-field name="roleTypeId"/>-->
+<!--        </index>-->
+    </entity>
+
+    <entity entity-name="ContactMech" package="custom.udm">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="contactMechTypeEnumId" type="id"/>
+        <field name="infoString" type="text-medium"/>
+        <relationship type="one" title="ContactMechType" related="Enumeration" short-alias="contactmechtype">
+            <key-map field-name="contactMechTypeEnumId"/>
+        </relationship>
+        <relationship type="one-nofk" title="PostalAddress" related="PostalAddress" short-alias="cmtpostal"/>
+        <relationship type="one-nofk" title="TelecomNumber" related="TelecomNumber" short-alias="cmttelecom"/>
+        <relationship type="many" title="PartyContactMech" related="PartyContactMech" short-alias="partycontactmech">
+            <key-map field-name="contactMechId"/>
+        </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Contact Mech Type" enumTypeId="ContactMechType"/>
+            <moqui.basic.Enumeration description="Postal Address" enumId="PostalAddress" enumTypeId="ContactMechType"/>
+            <moqui.basic.Enumeration description="Telecom Number" enumId="TelecomNumber" enumTypeId="ContactMechType"/>
+            <moqui.basic.Enumeration description="Email Address" enumId="EmailAddress" enumTypeId="ContactMechType"/>
+        </seed-data>
+        <master name="ContactMech">
+            <detail relationship="contactmechtype" use-master="ContactMech"/>
+            <detail relationship="cmtpostal" use-master="ContactMech"/>
+            <detail relationship="cmttelecom" use-master="ContactMech"/>
+            <detail relationship="partycontactmech" use-master="ContactMech"/>
+        </master>
+    </entity>
+
+    <entity entity-name="ContactMechPurpose" package="custom.udm">
+        <field name="contactMechPurposeId" type="id" is-pk="true"/>
+        <relationship type="many" related="PartyContactMech">
+            <key-map field-name="contactMechPurposeId"/>
+        </relationship>
+        <seed-data>
+            <custom.udm.ContactMechPurpose contactMechPurposeId="PrimaryEmail" />
+            <custom.udm.ContactMechPurpose contactMechPurposeId="BillingEmail" />
+            <custom.udm.ContactMechPurpose contactMechPurposeId="ShippingEmail" />
+            <custom.udm.ContactMechPurpose contactMechPurposeId="PostalAddress" />
+            <custom.udm.ContactMechPurpose contactMechPurposeId="TelecomNumber" />
+        </seed-data>
+    </entity>
+
+    <entity entity-name="PartyContactMech" package="custom.udm">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="contactMechPurposeId" type="id" is-pk="true"/>
+        <field name="fromDate" type="date" is-pk="true"/>
+        <field name="thruDate" type="date"/>
+        <relationship type="one" title="PartyContactMech" related="Party" >
+            <key-map field-name="partyId"/>
+        </relationship>
+        <relationship type="one" related="ContactMech">
+            <key-map field-name="contactMechId"/>
+        </relationship>
+        <relationship type="one" title="PtyContactMechPurpose" related="ContactMechPurpose">
+            <key-map field-name="contactMechPurposeId"/>
+        </relationship>
+    </entity>
+
+    <entity entity-name="PostalAddress" package="custom.udm">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="toName" type="text-medium" />
+        <field name="attnName" type="text-medium"/>
+        <field name="address1" type="text-long"/>
+        <field name="address2" type="text-medium"/>
+        <field name="city" type="text-medium"/>
+        <field name="postalCode" type="number-integer"/>
+        <relationship type="one" related="ContactMech">
+            <key-map field-name="contactMechId"/>
+        </relationship>
+    </entity>
+
+    <entity entity-name="TelecomNumber" package="custom.udm">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="countryCode" type="text-medium"/>
+        <field name="areaCode" type="text-medium"/>
+        <field name="contactNumber" type="number-integer"/>
+        <relationship type="one" related="ContactMech">
+            <key-map field-name="contactMechId"/>
+        </relationship>
+    </entity>
+</entities>

@@ -1,0 +1,5 @@
+custom.udm.PostalAddress, demo
+"contactMechId","toName","attnName","address1","address2","city","postalCode"
+"CM2003","Chaman","AS","Silicon City",,"Indore","453331"
+"CM2006","Company","IT",VijayNagar",,"Indore","451224"
+"CM2009","Imran",,Raj Nagar",,"Ujjain","453698"

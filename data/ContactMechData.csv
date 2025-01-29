@@ -1,0 +1,16 @@
+custom.udm.ContactMech, demo
+contactMechId,contactMechTypeEnumId,infoString
+"CM2001","EmailAddress","aman.dark@example.com"
+"CM2002","TelecomNumber",
+"CM2003","PostalAddress",
+"CM2004","EmailAddress","mohan.pyare@example.com"
+"CM2005","TelecomNumber",
+"CM2006","PostalAddress",
+"CM2007","EmailAddress","ashok@example.com"
+"CM2008","TelecomNumber",
+"CM2009","PostalAddress",
+"CM2010","EmailAddress","faranshiek@example.com"
+"CM2011","EmailAddress","karan@example.com"
+"CM2012","EmailAddress","lokesh.p@example.com"
+"CM2013","EmailAddress","gupta@example.com"
+"CM2014","EmailAddress","harmanpreet@example.com"
