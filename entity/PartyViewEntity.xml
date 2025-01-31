@@ -2,7 +2,40 @@
 <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-3.xsd">
 
-
+    <view-entity entity-name="FindCustomerView" package="custom.udm">
+        <member-entity entity-name="custom.udm.Person" entity-alias="PER"/>
+        <member-entity entity-name="custom.udm.PartyRole" entity-alias="ROLE"  join-from-alias="PER">
+            <key-map field-name="partyId"/>
+            <entity-condition>
+                <econdition field-name="roleTypeId" value="CUSTOMER"/>
+            </entity-condition>
+        </member-entity>
+        <member-entity entity-name="custom.udm.PartyContactMech" entity-alias="PCM" join-from-alias="PER">
+            <key-map field-name="partyId"/>
+        </member-entity>
+        <member-entity entity-name="custom.udm.ContactMech" entity-alias="CM" join-from-alias="PCM" join-optional="true">
+            <key-map field-name="contactMechId"/>
+        </member-entity>
+        <member-entity  entity-name="custom.udm.PostalAddress" entity-alias="PA" join-from-alias="CM" join-optional="true">
+            <key-map field-name="contactMechId"/>
+        </member-entity>
+        <member-entity entity-name="custom.udm.TelecomNumber" entity-alias="TN" join-from-alias="CM" join-optional="true">
+            <key-map field-name="contactMechId"/>
+        </member-entity>
+        <alias name="partyId" entity-alias="PER"/>
+        <alias name="firstName" entity-alias="PER"/>
+        <alias name="lastName" entity-alias="PER"/>
+        <alias name="role" entity-alias="ROLE" field="roleTypeId"/>
+        <alias name="emailAddress" entity-alias="CM" field="infoString"/>
+        <alias name="modeOfContact" entity-alias="CM" field="contactMechTypeEnumId"/>
+        <alias name="purposeOfContact" entity-alias="PCM" field="contactMechPurposeId"/>
+        <alias name="address" entity-alias="PA" field="address1"/>
+        <alias name="city" entity-alias="PA"/>
+        <alias name="postalCode" entity-alias="PA"/>
+        <alias name="contactNumber" entity-alias="TN"/>
+        <alias name="fromDate" entity-alias="PCM"/>
+        <alias name="thruDate" entity-alias="PCM"/>
+    </view-entity>
 
 
 </entities>

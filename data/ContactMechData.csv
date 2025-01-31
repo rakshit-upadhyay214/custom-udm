@@ -14,3 +14,15 @@ contactMechId,contactMechTypeEnumId,infoString
 "CM2012","EmailAddress","lokesh.p@example.com"
 "CM2013","EmailAddress","gupta@example.com"
 "CM2014","EmailAddress","harmanpreet@example.com"
+
+
+"CM2019","EmailAddress","ramanpreet@example.com"
+"CM2020","PostalAddress",
+"CM2021","TelecomNumber",
+
+"CM2015","EmailAddress","Param@example.com"
+"CM2016","EmailAddress","Param@example.com"
+"CM2017","TelecomNumber",
+"CM2018","PostalAddress",
+
+

@@ -2,7 +2,7 @@ custom.udm.PartyContactMech, demo
 partyId,contactMechId,contactMechPurposeId,fromDate,thruDate
 "PER1001","CM2001","PrimaryEmail","2000-01-01","2000-05-01"
 "ORG1001","CM2002","TelecomNumber","2000-01-01",
-"PER1002","CM2004","PrimaryEmail","2000-01-01",
+"PER1002","CM2004","BillingEmail","2000-01-01",
 "PER1003","CM2003","PostalAddress","2000-01-01","2025-05-01"
 "ORG1002","CM2006","PostalAddress","2000-01-01",
 "PER1004","CM2005","TelecomNumber","2000-01-01",
@@ -13,4 +13,15 @@ partyId,contactMechId,contactMechPurposeId,fromDate,thruDate
 "PER1012","CM2012","ShippingEmail","2000-01-01","2025-01-29"
 "PER1013","CM2004","BillingEmail","2000-01-01",
 "PER1014","CM2013","PrimaryEmail","2000-01-01",
-"PER1015","CM2008","TelecomNumber","2000-01-01",
+
+
+"PER1016","CM2019","BillingEmail","2000-01-01","2025-01-01"
+"PER1016","CM2020","PostalAddress","2000-01-01",
+"PER1016","CM2021","TelecomNumber","2000-01-01",
+
+
+"PER1017","CM2015","PrimaryEmail","2000-01-01",
+"PER1017","CM2016","BillingEmail","2000-01-01","2025-02-01"
+"PER1017","CM2017","TelecomNumber","2000-01-01",
+"PER1017","CM2018","PostalAddress","2000-01-01",
+

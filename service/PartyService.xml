@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+
+    <service verb="find" noun="FindCustomerView" type="script"
+             location="component://custom-udm/service/PartyService/findCustomer.groovy">
+        <in-parameters>
+            <auto-parameters entity-name="custom.udm.FindCustomerView"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="partyList" type="List">
+                <parameter name="partyId"/>
+                <parameter name="firstName"/>
+            </parameter>
+            <parameter name="listCount" type="Integer"/>
+            <parameter name="listPageSize" type="Integer"/>
+        </out-parameters>
+    </service>
+
+
+    <service verb="create" noun="Customer" type="script"
+             location="component://custom-udm/service/PartyService/createCustomer.groovy">
+        <in-parameters>
+            <auto-parameters entity-name="custom.udm.Person" include="nonpk"/>
+            <parameter name="infoString" entity-name="custom.udm.ContactMech" required="true"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="partyId"/>
+        </out-parameters>
+    </service>
+
+    <service verb="update" noun="Customer" type="script" location="component://custom-udm/service/PartyService/updateCustomer.groovy">
+        <in-parameters>
+            <auto-parameters entity-name="custom.udm.Party" include="pk"/>
+            <parameter name="infoString" entity-name="custom.udm.ContactMech"/>
+            <parameter name="address1" entity-name="custom.udm.PostalAddress"/>
+            <parameter name="city" entity-name="custom.udm.PostalAddress"/>
+            <parameter name="postalCode" entity-name="custom.udm.PostalAddress"/>
+            <parameter name="contactNumber" entity-name="custom.udm.TelecomNumber"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="partyId" />
+            <parameter name="contactMechId"/>
+        </out-parameters>
+    </service>
+
+
+
+</services>
