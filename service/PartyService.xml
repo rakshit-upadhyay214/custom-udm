@@ -31,7 +31,6 @@
 
     <service verb="update" noun="Customer" type="script" location="component://custom-udm/service/PartyService/updateCustomer.groovy">
         <in-parameters>
-            <auto-parameters entity-name="custom.udm.Party" include="pk"/>
             <parameter name="infoString" entity-name="custom.udm.ContactMech"/>
             <parameter name="address1" entity-name="custom.udm.PostalAddress"/>
             <parameter name="city" entity-name="custom.udm.PostalAddress"/>
@@ -43,7 +42,4 @@
             <parameter name="contactMechId"/>
         </out-parameters>
     </service>
-
-
-
 </services>

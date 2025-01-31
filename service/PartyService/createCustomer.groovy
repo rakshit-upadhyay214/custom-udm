@@ -44,7 +44,7 @@ ev = ec.entity.makeValue("PartyContactMech")
         .set("partyId",partyId)
         .set("contactMechId",contactId)
         .set("contactMechPurposeId","PrimaryEmail")
-        .set("fromDate", new Timestamp(new Date().getDate()))
+        .set("fromDate", new Timestamp(new Date().getTime()))
         .set("thruDate", null)
         .create()
 
